@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+
+metadata:
+  name: demo1-root
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+
+spec:
+  destination:
+    namespace: argocd    
+    name: in-cluster
+
+  project: demo1
+  
+  source:
+    path: apps
+    repoURL: git@github.com:vispav/demo-apps.git
+    targetRevision: main
+
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      
+    syncOptions:
+    - CreateNamespace=false
+    - ApplyOutOfSyncOnly=true

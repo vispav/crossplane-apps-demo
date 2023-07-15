@@ -1,0 +1,18 @@
+lambda:
+  - name: "demo-lambda-integrator"
+    packageType: "Zip"
+    s3Bucket: "demo-bucket-artifacts"
+    s3Key: "demo-0.0.2.jar"
+    handler: "dummy"
+    runtime: "java11"
+    region: "eu-west-1"
+    memorySize: "512"
+    timeout: "30"
+    envVars:
+      - "var1": "value"
+      - "var2": "value"
+    sqsTrigger: true
+    batchSize: "1"
+    allowToBucket: "demo-bucket-artifacts*"
+    allowToDynamoDB: ["",""]
+    snapStart: true

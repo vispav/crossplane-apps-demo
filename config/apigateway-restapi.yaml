@@ -1,0 +1,45 @@
+api_gw:
+# MOCK
+  - api: "1"
+    path: "/api1/demo_mock"
+    httpMethod: "OPTIONS"
+    authorizer: false
+
+# "VPC_LINK" integragtion (PROXY TO EKS)
+  - api: "1"
+    path: "/api1/demo_eks"
+    httpMethod: "GET"
+    authorizer: true
+
+  - api: "1"
+    path: "/api1/demo_eks2"
+    httpMethod: "GET"
+    authorizer: true
+
+# "AWS_PROXY" integration (PROXY to Lambda)
+  - api: "1"
+    path: "/api1/demo_lambda"
+    httpMethod: "POST"
+    authorizer: true
+    lambdaIntegration: true
+    lambda: "demo-lambda-integrator"
+
+# API 2
+# "VPC_LINK" integragtion (PROXY TO EKS)
+  - api: "2"
+    path: "/api2/demo_eks"
+    httpMethod: "GET"
+    authorizer: true
+
+  - api: "2"
+    path: "/api2/demo_eks2"
+    httpMethod: "GET"
+    authorizer: true
+
+# "AWS_PROXY" integration (PROXY to Lambda)
+  - api: "2"
+    path: "/api2/demo_lambda"
+    httpMethod: "POST"
+    authorizer: true
+    lambdaIntegration: true
+    lambda: "demo-lambda-integrator"
